@@ -16,6 +16,6 @@ class tech_challenge {
   }
 
   else {
-    warning('Please only install on Centos7 / Ubuntu 20.04')
+    notify { 'Please only install on Centos7 / Ubuntu 20.04': }
   }
 }
