@@ -5,7 +5,8 @@
 # @example
 #   include tech_challenge::service
 class tech_challenge::service {
-  service { 'jenkins':
-    ensure  => running,
+  service { 'service_jenkins':
+    ensure => running,
+    name   => 'jenkins',
   }
 }
