@@ -5,12 +5,12 @@
 # @example
 #   include tech_challenge
 class tech_challenge {
-  if ( $facts['operatingsystem'] == 'CentOS' and $facts['operatingsystemrelease'] == 7 ) {
+  if ( $facts['operatingsystem'] == 'CentOS' and $facts['operatingsystemrelease'] == '7' ) {
     include tech_challenge::install_centos
     include tech_challenge::service
   }
 
-  elsif ( $facts['operatingsystem'] == 'Ubuntu' and $facts['operatingsystemrelease'] == 22.04 ) {
+  elsif ( $facts['operatingsystem'] == 'Ubuntu' and $facts['operatingsystemrelease'] == '22.04' ) {
     include tech_challenge::install_ubuntu
     include tech_challenge::service
   }
