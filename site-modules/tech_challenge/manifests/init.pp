@@ -10,7 +10,7 @@ class tech_challenge {
     include tech_challenge::service
   }
 
-  elsif $facts['operatingsystem'] == 'Ubuntu' and $facts['operatingsystemrelease'] == 20.04 {
+  elsif $facts['operatingsystem'] == 'Ubuntu' and $facts['operatingsystemrelease'] == 22.04 {
     include tech_challenge::install_ubuntu
     include tech_challenge::service
   }
