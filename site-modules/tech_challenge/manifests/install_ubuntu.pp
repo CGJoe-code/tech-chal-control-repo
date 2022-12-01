@@ -12,7 +12,7 @@ class tech_challenge::install_ubuntu (
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     cwd     => '/etc/apt/sources.list.d',
     user    => 'root',
-    creates => '/etc/apt/sources.list.d/jenkins.repo',
+    creates => '/etc/apt/sources.list.d/jenkins.list',
     notify  => Exec['extract'],
   }
   exec { 'extract':
