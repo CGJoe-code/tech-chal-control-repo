@@ -39,19 +39,19 @@ class tech_challenge::install_centos (
   file { '/etc/sysconfig/jenkins':
     ensure => present,
   }
-  file_line { 'Append a line to /etc/sysconfig/jenkins':
-    path               => '/etc/sysconfig/jenkins',
-    line               => "JENKINS_PORT=${port}",
-    match              => '^JENKINS_PORT.*$',
-    append_on_no_match => false,
-  }
-  file_line { 'Append another line to /etc/sysconfig/jenkins':
-    path               => '/etc/sysconfig/jenkins',
-    line               => "JENKINS_HTTPS_PORT=${port}",
-    match              => '^JENKINS_HTTPS_PORT.*$',
-    append_on_no_match => false,
-    notify             => Service['jenkins'],
-  }
+  #file_line { 'Append a line to /etc/sysconfig/jenkins':
+  #  path               => '/etc/sysconfig/jenkins',
+  #  line               => "JENKINS_PORT=${port}",
+  #  match              => '^JENKINS_PORT.*$',
+  #  append_on_no_match => false,
+  #}
+  #file_line { 'Append another line to /etc/sysconfig/jenkins':
+  #  path               => '/etc/sysconfig/jenkins',
+  #  line               => "JENKINS_HTTPS_PORT=${port}",
+  #  match              => '^JENKINS_HTTPS_PORT.*$',
+  #  append_on_no_match => false,
+  #  notify             => Service['jenkins'],
+  #}
   Exec { 'jenkins':
     command     => '/usr/bin/systemctl restart jenkins',
     user        => 'root',
