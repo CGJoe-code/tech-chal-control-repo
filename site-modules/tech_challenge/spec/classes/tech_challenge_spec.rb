@@ -6,9 +6,8 @@ describe 'tech_challenge' do
   let(:title) { 'tech_challenge' }
   let(:node) { 'test.example.com' }
   
-  context 'RedHat' do
+  context 'Centos' do
     let(:facts) { {
-      :osfamily => 'RedHat',
       :operatingsystem => 'CentOS',
       :operatingsystemmajrelease => 7,
     } }
@@ -18,9 +17,8 @@ describe 'tech_challenge' do
     … 
   end
 
-  context 'Debian' do
+  context 'Ubuntu' do
     let(:facts) { {
-    :osfamily => 'Debian',
     :operatingsystem => 'Ubuntu',
     :operatingsystemmajrelease => 20.04,
   } }
