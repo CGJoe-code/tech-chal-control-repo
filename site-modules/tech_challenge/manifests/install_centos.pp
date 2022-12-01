@@ -36,26 +36,27 @@ class tech_challenge::install_centos (
     ensure => present,
   }
 # Replace HTTP_PORT in /etc/sysconfig/jenkins
- # file { '/etc/sysconfig/jenkins':
- #   ensure => present,
- # }
-  #file_line { 'Append a line to /etc/sysconfig/jenkins':
-  #  path               => '/etc/sysconfig/jenkins',
-  #  line               => "JENKINS_PORT=${port}",
-  #  match              => '^JENKINS_PORT.*$',
-  #  append_on_no_match => false,
-  #}
-  #file_line { 'Append another line to /etc/sysconfig/jenkins':
-  #  path               => '/etc/sysconfig/jenkins',
-  #  line               => "JENKINS_HTTPS_PORT=${port}",
-  #  match              => '^JENKINS_HTTPS_PORT.*$',
-  #  append_on_no_match => false,
-  #  notify             => Service['jenkins'],
-  #}
-  #Exec { 'jenkins':
-  #  command     => '/usr/bin/systemctl restart jenkins',
-   # user        => 'root',
-   # subscribe   => File_line['Append another line to /etc/sysconfig/jenkins'],
-   # refreshonly => true,
-  #}
+  file { '/etc/sysconfig/jenkins':
+    ensure => present,
+  }
+  file_line { 'Append a line to /etc/sysconfig/jenkins':
+    path               => '/etc/sysconfig/jenkins',
+    line               => "JENKINS_PORT=${port}",
+    match              => '^JENKINS_PORT.*$',
+    append_on_no_match => false,
+    notify             => Service['jenkins'],
+  }
+  file_line { 'Append a line to /usr/lib/systemd/system/jenkins.service':
+    path               => '/usr/lib/systemd/system/jenkins.service',
+    line               => "Environment=\"JENKINS_PORT=${port}",
+    match              => '^Environment="JENKINS_PORT.*$',
+    append_on_no_match => false,
+
+  }
+  Exec { 'jenkins':
+    command     => '/usr/bin/systemctl daemon-reload && /usr/bin/systemctl restart jenkins' ,
+    user        => 'root',
+    subscribe   => File_line['Append a line to /etc/sysconfig/jenkins'],
+    refreshonly => true,
+  }
 }
