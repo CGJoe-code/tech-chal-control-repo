@@ -5,17 +5,17 @@
 # @example
 #   include tech_challenge
 class tech_challenge {
-  if ( $facts['operatingsystem'] == 'CentOS' and $facts['operatingsystemrelease'] == '7' ) {
+  if ( $facts['operatingsystem'] == 'CentOS' and $facts['operatingsystemmajrelease'] == '7' ) {
     include tech_challenge::install_centos
     include tech_challenge::service
   }
 
-  elsif ( $facts['operatingsystem'] == 'Ubuntu' and $facts['operatingsystemrelease'] == '22.04' ) {
+  elsif ( $facts['operatingsystem'] == 'Ubuntu' and $facts['operatingsystemmajrelease'] == '20.04' ) {
     include tech_challenge::install_ubuntu
     include tech_challenge::service
   }
 
   else {
-    notify { "${facts['operatingsystem']} ${facts['operatingsystemrelease']} ,Please only install on Centos7 / Ubuntu 20.04": }
+    notify { "${facts['operatingsystem']} ${facts['operatingsystemrelease']} ,Please only install on RHEL 7 / Centos7 / Ubuntu 20.04": }
   }
 }
