@@ -48,7 +48,7 @@ class tech_challenge::install_centos (
   }
   file_line { 'Append a line to /usr/lib/systemd/system/jenkins.service':
     path               => '/usr/lib/systemd/system/jenkins.service',
-    line               => "Environment=\"JENKINS_PORT=${port}",
+    line               => "Environment=\"JENKINS_PORT=${port}\"",
     match              => '^Environment="JENKINS_PORT.*$',
     append_on_no_match => false,
 
