@@ -16,6 +16,6 @@ class tech_challenge {
   }
 
   else {
-    notify { "$facts['operatingsystem'] $facts['operatingsystemrelease'] ,Please only install on Centos7 / Ubuntu 20.04": }
+    notify { "${facts['operatingsystem']} ${facts['operatingsystemrelease']} ,Please only install on Centos7 / Ubuntu 20.04": }
   }
 }
