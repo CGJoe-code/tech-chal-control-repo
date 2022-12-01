@@ -14,18 +14,18 @@ class tech_challenge::install_centos (
     cwd     => '/etc/yum.repos.d',
     user    => 'root',
     #creates => '/etc/yum.repos.d/jenkins.repo',
-    notify  => Exec['stable Jenkins repo'],
+    notify  => Exec['stable jenkins repo'],
   }
 
-  exec { 'stable Jenkins repo':
+  exec { 'stable jenkins repo':
     command => 'curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo',
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     cwd     => '/etc/yum.repos.d',
     user    => 'root',
     creates => '/etc/yum.repos.d/jenkins.repo',
-    notify  => Exec['extract'],
+    notify  => Exec['key'],
   }
-  exec { 'extract':
+  exec { 'key':
     command     => 'rpm --import http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key',
     path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     cwd         => '/etc/yum.repos.d',
@@ -41,8 +41,8 @@ class tech_challenge::install_centos (
   }
   file_line { 'Append a line to /etc/sysconfig/jenkins':
     path               => '/etc/sysconfig/jenkins',
-    line               => "HTTP_PORT=${port}",
-    match              => '^HTTP_PORT.*$',
+    line               => "JENKINS_PORT=${port}",
+    match              => '^JENKINS_PORT.*$',
     append_on_no_match => false,
     notify             => Service['jenkins'],
   }
