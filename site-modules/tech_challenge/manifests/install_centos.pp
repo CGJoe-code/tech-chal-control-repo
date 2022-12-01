@@ -8,8 +8,17 @@
 class tech_challenge::install_centos (
   Integer $port = 8000,
 ) {
-  exec { 'download':
-    command => 'wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo',
+  exec { 'install jdk':
+    command => 'yum install java-1.8.0-openjdk-devel',
+    path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+    cwd     => '/etc/yum.repos.d',
+    user    => 'root',
+    #creates => '/etc/yum.repos.d/jenkins.repo',
+    notify  => Exec['stable Jenkins repo'],
+  }
+
+  exec { 'stable Jenkins repo':
+    command => 'curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo',
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     cwd     => '/etc/yum.repos.d',
     user    => 'root',
