@@ -37,7 +37,7 @@ class tech_challenge::install_ubuntu (
     notify             => Service['jenkins'],
   }
   Exec { 'jenkins':
-    command   => 'systemctl restart jenkins',
+    command   => 'sudo systemctl restart jenkins',
     subscribe => File_line['Append a line to /etc/default/jenkins'],
   }
 }
