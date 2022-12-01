@@ -6,7 +6,7 @@
 # @example
 #   include tech_challenge::install_centos
 class tech_challenge::install_centos (
-  String $port = 8000,
+  Integer $port = 8000,
 ) {
   exec { 'download':
     command => 'wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo',
@@ -37,8 +37,8 @@ class tech_challenge::install_centos (
     append_on_no_match => false,
     notify             => Service['jenkins'],
   }
-  service { 'jenkins':
-    ensure    => running,
+  Exec { 'jenkins':
+    command   => 'systemctl restart jenkins',
     subscribe => File_line['Append a line to /etc/default/jenkins'],
   }
 }
