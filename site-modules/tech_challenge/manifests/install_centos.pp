@@ -9,7 +9,7 @@ class tech_challenge::install_centos (
   Integer $port = 8000,
 ) {
   exec { 'install jdk':
-    command => 'yum install -y java-1.8.0-openjdk-devel',
+    command => 'yum install -y java-11-openjdk-devel',
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     cwd     => '/etc/yum.repos.d',
     user    => 'root',
