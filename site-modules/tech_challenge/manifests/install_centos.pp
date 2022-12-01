@@ -41,8 +41,8 @@ class tech_challenge::install_centos (
   }
   file_line { 'Append a line to /etc/sysconfig/jenkins':
     path               => '/etc/sysconfig/jenkins',
-    line               => "JENKINS_HTTPS_PORT=${port}",
-    match              => '^JENKINS_HTTPS_PORT.*$',
+    line               => "JENKINS_PORT=${port}",
+    match              => '^JENKINS_PORT.*$',
     append_on_no_match => false,
     notify             => Service['jenkins'],
   }
