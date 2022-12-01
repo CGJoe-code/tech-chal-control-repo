@@ -5,7 +5,7 @@
 # @example
 #   include tech_challenge::install_ubuntu
 class tech_challenge::install_ubuntu (
-  String $port = 8011
+  Integer $port = 8011
 ) {
   exec { 'download':
     command => 'wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
