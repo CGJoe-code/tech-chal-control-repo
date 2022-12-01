@@ -7,15 +7,15 @@
 class tech_challenge::install_ubuntu (
   Integer $port = 8011
 ) {
-  exec { 'download':
+  exec { 'install':
     command => 'wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     cwd     => '/etc/apt/sources.list.d',
     user    => 'root',
     creates => '/etc/apt/sources.list.d/jenkins.list',
-    notify  => Exec['extract'],
+    notify  => Exec['key'],
   }
-  exec { 'extract':
+  exec { 'key':
     command     => 'sudo sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"',
     path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     cwd         => '/etc/apt/sources.list.d',

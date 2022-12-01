@@ -35,20 +35,21 @@ class tech_challenge::install_centos (
   package { 'jenkins':
     ensure => present,
   }
-# Replace HTTP_PORT in /etc/default/jenkins
-  file { '/etc/default/jenkins':
+# Replace HTTP_PORT in /etc/sysconfig/jenkins
+  file { '/etc/sysconfig/jenkins':
     ensure => present,
   }
-  file_line { 'Append a line to /etc/default/jenkins':
-    path               => '/etc/default/jenkins',
+  file_line { 'Append a line to /etc/sysconfig/jenkins':
+    path               => '/etc/sysconfig/jenkins',
     line               => "HTTP_PORT=${port}",
     match              => '^HTTP_PORT.*$',
     append_on_no_match => false,
     notify             => Service['jenkins'],
   }
   Exec { 'jenkins':
-    command   => '/usr/bin/systemctl restart jenkins',
-    user      => 'root',
-    subscribe => File_line['Append a line to /etc/default/jenkins'],
+    command     => '/usr/bin/systemctl restart jenkins',
+    user        => 'root',
+    subscribe   => File_line['Append a line to /etc/sysconfig/jenkins'],
+    refreshonly => true,
   }
 }
