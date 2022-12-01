@@ -1,8 +1,7 @@
-# @summary A short summary of the purpose of this class
+# @summary 
 #
-# A description of what this class does
-#
-# parameter $port is a number
+# This class installs jenkins on centos 7 machines & changes the default port
+# parameter $port is a integer
 # @example
 #   include tech_challenge::install_centos
 class tech_challenge::install_centos (
@@ -51,7 +50,6 @@ class tech_challenge::install_centos (
     line               => "Environment=\"JENKINS_PORT=${port}\"",
     match              => '^Environment="JENKINS_PORT.*$',
     append_on_no_match => false,
-
   }
   Exec { 'jenkins':
     command     => '/usr/bin/systemctl daemon-reload && /usr/bin/systemctl restart jenkins' ,

@@ -1,6 +1,8 @@
-# @summary A short summary of the purpose of this class
+# @summary 
 #
-# A description of what this class does
+# The module supports installing jenkins into centos 7 and ubuntu 20.04
+# it will be configured to run on port 8000 for centos and 8011 for ubuntu
+# changes required to make this happen within the code run and it will restart the service after
 #
 # @example
 #   include tech_challenge

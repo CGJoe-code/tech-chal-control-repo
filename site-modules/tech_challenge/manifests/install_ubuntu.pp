@@ -1,6 +1,6 @@
-# @summary A short summary of the purpose of this class
+# @summary 
 #
-# A description of what this class does
+# This class installs jenkins on ubuntu hosts 20.04 only & changes the default port jenkins runs on.
 #
 # @example
 #   include tech_challenge::install_ubuntu
